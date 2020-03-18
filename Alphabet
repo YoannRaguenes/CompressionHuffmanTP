@@ -1,0 +1,45 @@
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Alphabet {
+	public static void main (String[] args) throws IOException {
+		
+		ArrayList charac = new ArrayList();
+		ArrayList lines = new ArrayList();
+		ArrayList recCharac = new ArrayList();
+		String boutAbout = new String();
+		
+		BufferedReader file = new BufferedReader(new FileReader("C:/alice.txt"));
+		String line;
+		while ((line = file.readLine()) != null) {
+			lines.add(line);
+			// Afficher le contenu du fichier
+	   		//System.out.println (lines.size());
+				}
+		for (int i=0;i<=lines.size();i++) {
+			boutAbout=boutAbout+lines.get(i);
+			System.out.println(boutAbout);
+			for(int j=1;j<=((String) lines.get(i)).length()-1;j++) {
+				if (charac.contains(((String) lines.get(i)).charAt(j))) {
+					;
+		        }
+				else {
+					charac.add(((String) lines.get(i)).charAt(j));
+					//System.out.println(charac);
+				}
+				
+				
+				
+			
+	 
+	        }
+	}file.close();
+	//System.out.println(boutAbout);
+	
+		
+	}
+	
+}
