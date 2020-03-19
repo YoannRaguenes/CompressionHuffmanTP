@@ -1,45 +1,83 @@
-import java.io.FileReader;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.io.*;
+import java.util.*;
 
-public class Alphabet {
-	public static void main (String[] args) throws IOException {
-		
-		ArrayList charac = new ArrayList();
-		ArrayList lines = new ArrayList();
-		ArrayList recCharac = new ArrayList();
-		String boutAbout = new String();
-		
-		BufferedReader file = new BufferedReader(new FileReader("C:/alice.txt"));
-		String line;
-		while ((line = file.readLine()) != null) {
-			lines.add(line);
-			// Afficher le contenu du fichier
-	   		//System.out.println (lines.size());
-				}
-		for (int i=0;i<=lines.size();i++) {
-			boutAbout=boutAbout+lines.get(i);
-			System.out.println(boutAbout);
-			for(int j=1;j<=((String) lines.get(i)).length()-1;j++) {
-				if (charac.contains(((String) lines.get(i)).charAt(j))) {
-					;
-		        }
-				else {
-					charac.add(((String) lines.get(i)).charAt(j));
-					//System.out.println(charac);
-				}
-				
-				
-				
-			
-	 
-	        }
-	}file.close();
-	//System.out.println(boutAbout);
+public class Huffman {
 	
+	
+	
+	//  [ETAPE 1]
+	//We start by reading the given text file. 
+	 
+	
+	public static char [] getCharac(String filepath) throws IOException{
+		File file = new File(filepath);
+		char [] text = new char[(int) file.length()];
+		FileReader fr = new FileReader(file); 
+		fr.read(text);   
+		fr.close();
+		return text;
+	}
+	
+	/* [ETAPE 1]
+	 * We get the frequency of each character of the text.
+	 *  We use HashMap from java.util to combine a character with an integer.
+	 * If the character isn't in 'res', we put the entire object else we just change the integer(+1)
+	 */
+	
+	public static HashMap<Character, Integer> countCharac(char [] chars){
+		HashMap<Character, Integer> res = new HashMap<Character, Integer>();
+
+		for(char aChar : chars){
+			if(!res.containsKey(aChar)) res.put(aChar, 1);
+			else res.put(aChar, res.get(aChar) + 1);
+		}
+		
+		
+		
+		return res;
+
+	}
+	
+	
+	/* [ETAPE 2]
+	 * Creation of the "Node" class
+	 * A node has a value, a right and left son and a frequency
+	 */
+	
+	private class Node<Value>{
+		public Value value;
+		public Node<Value> leftSon;
+		public Node<Value> rightSon;
+		public int frequency;
+		
+		public Node(Value value,Node<Value>leftSon, Node<Value>rightSon,int frequency) {
+			this.value=value;
+			this.leftSon=leftSon;
+			this.rightSon=rightSon;
+			this.frequency=frequency;
+		}
 		
 	}
 	
+	public static Node<Character> tree (HashMap<Character,Integer>frequency){
+		boolean end = false;
+		Node<Character> top;
+		
+		
+		
+	}
+	
+	
+	
+public static void main(String[] args) throws IOException {
+		
+		//System.out.println(getCharac("C:/alice.txt"));
+		System.out.println(countCharac(getCharac("C:/alice.txt")));
+		
+	}
+
+
+	
+	
+
 }
