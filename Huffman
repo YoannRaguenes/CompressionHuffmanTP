@@ -1,0 +1,155 @@
+import java.io.*;
+import java.util.*;
+
+	public class TestTri {
+		
+		
+	//  [ETAPE 1]
+		//We start by opening and reading the given text file. 
+		 
+		
+		public static char [] getCharac(String filepath) throws IOException{
+			File file = new File(filepath);
+			char [] text = new char[(int) file.length()];
+			FileReader fr = new FileReader(file); 
+			fr.read(text);   
+			fr.close();
+			return text;
+			
+			
+		}
+		
+		
+		/* [ETAPE 1]
+		 * We get the frequency of each character of the text.
+		 *  We use HashMap from java.util to combine a character with an integer.
+		 * If the character isn't in 'res', we put the entire object else we just change the integer(+1)
+		 */
+		
+		public static HashMap<Character, Integer> countCharac(char [] chars){
+			HashMap<Character, Integer> res = new HashMap<Character, Integer>();
+
+			for(char aChar : chars){
+				if(!res.containsKey(aChar)) res.put(aChar, 1);
+				else res.put(aChar, res.get(aChar) + 1);
+				
+				
+			}
+			return res;	
+		}
+		
+		/* Now we have to sort this HashMap by the frequencies, so we create another HashMap  */
+	
+
+	   public static HashMap<Character, Integer> sortHashMap(Map<Character, Integer> hmap){
+	        List<Map.Entry<Character, Integer>> list =
+	           new LinkedList<Map.Entry<Character,Integer>>( hmap.entrySet() );
+	        Collections.sort( list, new Comparator<Map.Entry<Character, Integer>>(){
+	           public int compare
+	           (Map.Entry<Character, Integer>o1, Map.Entry<Character, Integer> o2 )
+	           {
+	              //Compare the two values
+	              return (o1.getValue()).compareTo( o2.getValue() );
+	           }
+	        });
+
+	        //Creation of the new HashMap
+	        HashMap<Character, Integer> sortedHmap = new LinkedHashMap<Character, Integer>();
+	        for (Map.Entry<Character, Integer> entry : list)
+	        {
+	            sortedHmap.put( entry.getKey(), entry.getValue() );
+	        }
+	        return sortedHmap;
+	        
+	    }
+	   
+	   // [ETAPE2] Creation of the "node" object.     
+	   
+	   public class Node {
+		   
+		   private int frequency;
+		   private char charac = '@';
+		   private Node leftSon = null;
+		   private Node rightSon = null;
+		   private String binaryCode ="";
+		   
+		   public Node(int frequency, char charac, Node leftSon, Node rightSon, String binaryCode) {
+			   super();
+			   this.frequency=frequency;
+			   this.charac=charac;
+			   this.leftSon=leftSon;
+			   this.rightSon=rightSon;
+			   this.binaryCode=binaryCode;
+		   }
+		   
+		   //Getters and Setters
+		   
+		   
+		   public int getFrequency() {
+				return frequency;
+			}
+
+			public void setFrequency(int frequency) {
+				this.frequency = frequency;
+			}
+
+			public char getCharac() {
+				return charac;
+			}
+
+			public void setCharac(char charac) {
+				this.charac = charac;
+			}
+
+			public Node getLeftSon() {
+				return leftSon;
+			}
+
+			public void setLeftSon(Node leftSon) {
+				this.leftSon = leftSon;
+			}
+
+			public Node getRightSon() {
+				return rightSon;
+			}
+
+			public void setRightSon(Node rightSon) {
+				this.rightSon = rightSon;
+			}
+
+			public String getBinaryCode() {
+				return binaryCode;
+			}
+
+			public void setBinaryCode(String binaryCode) {
+				this.binaryCode = binaryCode;
+			}
+			
+			@Override
+		public String toString() {
+			return "Node(frequency=" +this.frequency + ", charac="+this.charac+ ", leftSon= "+this.leftSon +", rightSon= "
+					+this.rightSon +", binaryCode= "+ this.binaryCode +")";
+		}
+			
+			public boolean isLeaf() {
+				return(this.rightSon == null && this.leftSon == null);
+			}
+			
+	   }
+	   
+	  public ArrayList<Node> CreateNode(){
+		  Iterator i = sortedHmap.keySet().iterator();
+		  
+		  
+	  }
+	   
+	   
+	   
+	 
+	    public static void main(String[] args) throws IOException {
+	    	
+	    	System.out.println(sortHashMap((countCharac(getCharac("C:/alice.txt")))));
+
+	       
+	}
+	    }
