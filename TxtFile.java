@@ -188,7 +188,7 @@ public class TxtFile {
 			root.setBinaryCode(binaryCode);
 			this.hmap.put(root.getCharac(),root.getBinaryCode());
 		}
-		System.out.println(hmap);
+		
 	}
 	
 	public void codeFile(String filepath) throws IOException {
@@ -208,15 +208,15 @@ public class TxtFile {
 		
 		File file = new File(filepath);
 		file.createNewFile();
-		FileWriter fileWriter = new FileWriter(file);
+		FileWriter fileWriter1 = new FileWriter(file);
 		for(String i:bytes) {
 			int aByte = Integer.parseInt(i,2);
-			fileWriter.write((byte)aByte);
+			fileWriter1.write((byte)aByte);
 		}
-		fileWriter.close();
+		fileWriter1.close();
 		
 	}
-	// Get the compression rate of the text
+	// Get the compression rate of the text, (doesn't work) 
 	public float compression(String filepathBin, String filepathTxt) {
 		File bin = new File(filepathBin);
 		File txt = new File(filepathTxt);
