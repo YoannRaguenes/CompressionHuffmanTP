@@ -84,7 +84,10 @@ public class TxtFile {
 			if(charac.contains(this.txt.charAt(i)) == false) {
 				charac.add(this.txt.charAt(i));
 				Tuple aTuple = new Tuple(this.txt.charAt(i),1);
+				aTuple.setCharacter(this.txt.charAt(i));
+				aTuple.setFrequency(1);
 				this.tuple.add(aTuple);
+				//System.out.println(tuple);
 			}
 			
 			else { 
@@ -108,21 +111,27 @@ public class TxtFile {
 			int freqTemp = this.tuple.get(i).frequency;
 			int j =i;
 			while(j>0 && this.tuple.get(j-1).frequency > freqTemp) {
-				this.tuple.get(j).setCharacter(charTemp);
-				this.tuple.get(j).setFrequency(freqTemp);
-				
+				this.tuple.get(j).setFrequency(this.tuple.get(j-1).frequency);
+				this.tuple.get(j).setCharacter(this.tuple.get(j-1).character);
+				j--;
+				//System.out.println(freqTemp);
+				//System.out.println(charTemp);
 			}
-			
+			this.tuple.get(j).setFrequency(freqTemp);
+			this.tuple.get(j).setCharacter(charTemp);	
 		}
-			
+		
 	}
+	
 	
 	//creation of the Nodes by using the Tuples
 	public ArrayList<Node> nodeList(){
 		
 		for(int i=0;i<this.tuple.size();i++) {
+			//System.out.println(this.tuple.get(i).frequency);
 			this.NodeList.add(new Node(this.tuple.get(i).frequency,this.tuple.get(i).character,null,null,""));
 		}
+		
 		return this.NodeList;
 	}
 	//Method to sort the nodes 
@@ -141,6 +150,7 @@ public class TxtFile {
 				list.get(j).setRightSon(list.get(j-1).getRightSon());
 				list.get(j).setLeftSon(list.get(j-1).getLeftSon());
 				list.get(j).setBinaryCode(list.get(j-1).getBinaryCode());
+				j--;
 			}
 			list.get(j).setFrequency(freqTemp);
 			list.get(j).setCharac(charTemp);
@@ -148,6 +158,7 @@ public class TxtFile {
 			list.get(j).setLeftSon(leftSonTemp);
 			list.get(j).setBinaryCode(binaryCode);
 		}
+		
 		return list;
 	}
 	
@@ -161,6 +172,7 @@ public class TxtFile {
 			a.remove(0);
 			a.add(new Node(small1.getFrequency()+small2.getFrequency(),'€',small1,small2,""));
 			a=this.sortedNodes(a);
+			
 			
 		}
 		return a.get(0);
@@ -176,7 +188,7 @@ public class TxtFile {
 			root.setBinaryCode(binaryCode);
 			this.hmap.put(root.getCharac(),root.getBinaryCode());
 		}
-		
+		System.out.println(hmap);
 	}
 	
 	public void codeFile(String filepath) throws IOException {
