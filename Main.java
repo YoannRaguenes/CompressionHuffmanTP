@@ -13,7 +13,7 @@ public class Main {
 		Node n1=alice.createTree();
 		alice.coding(n1, "");
 		
-		alice.codeFile("C:\\");
+		//alice.codeFile("C:\\");
 		
 		
 		
