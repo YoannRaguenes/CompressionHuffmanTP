@@ -9,7 +9,7 @@ public class Node {
 	private String binaryCode ="";
 
 	
-	public Node(int freq, char charac, Node leftSon, Node rightSon, String codebin) {
+	public Node(int frequency, char charac, Node leftSon, Node rightSon, String codebin) {
 		super();
 		this.frequency = frequency;
 		this.charac = charac;
@@ -64,7 +64,7 @@ public class Node {
 	
 	// Return all the information about the node
 	public String toString() {
-		return "Node(charac= " + this.charac + ", frequency= "+this.frequency+ ", leftSon= "+this.leftSon +", rightSon= "
+		return "Node(charac= " + this.charac + ", frequency= " +this.frequency+ ", leftSon= "+this.leftSon +", rightSon= "
 				+this.rightSon +", binaryCode= "+ this.binaryCode +")";
 	}
 	
